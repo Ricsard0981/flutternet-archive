@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlutterNet Service Archive</title>
+<meta name="description" content="FlutterNet Messenger was discontinued in 2013. Service archive and relay status.">
+<meta name="theme-color" content="#2b5ea7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 110'%3E%3Cellipse cx='34' cy='40' rx='30' ry='9' transform='rotate(-18 34 40)' fill='%237fd6e8'/%3E%3Cellipse cx='86' cy='40' rx='30' ry='9' transform='rotate(18 86 40)' fill='%2380e0b0'/%3E%3Cellipse cx='34' cy='58' rx='26' ry='8' transform='rotate(16 34 58)' fill='%23b39ddb'/%3E%3Cellipse cx='86' cy='58' rx='26' ry='8' transform='rotate(-16 86 58)' fill='%23f8a5c2'/%3E%3Crect x='55' y='34' width='10' height='68' rx='5' fill='%232b5ea7'/%3E%3Ccircle cx='60' cy='28' r='9' fill='%232b5ea7'/%3E%3C/svg%3E">
+<style>
+  body { margin: 0; background: #f2f2f2; color: #222; font: 14px/1.55 Arial, Helvetica, sans-serif; }
+  .page { max-width: 860px; margin: 0 auto; background: #fff; min-height: 100vh; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
+  header { display: flex; align-items: center; gap: 12px; padding: 18px 28px; border-bottom: 3px solid #2b5ea7; }
+  header b { font: bold 22px Arial; color: #2b5ea7; } header span { color: #888; }
+  main { padding: 8px 28px 28px; }
+  h1 { font-size: 20px; margin: 22px 0 8px; } h2 { font-size: 16px; margin: 28px 0 8px; color: #2b5ea7; }
+  .notice { background: #fffbe6; border: 1px solid #f0d878; padding: 12px 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #e5e5e5; }
+  th { background: #f5f7fa; font-weight: bold; }
+  td.off { color: #999; } td.on { color: #2e7d32; font-weight: bold; }
+  tr.live { cursor: help; } tr.live:hover td { background: #f3fbf3; }
+  .tip { display: none; font-size: 12px; color: #555; background: #f3fbf3; }
+  .tip.show { display: table-row; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+  .pcard { border: 1px solid #ddd; padding: 12px; background: #fafafa; font-size: 13px; }
+  .pcard .top { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+  .pcard .dp { width: 48px; height: 48px; border: 1px solid #ccc; flex: none; }
+  .pcard b { display: block; } .pcard small { color: #888; }
+  .pcard img { width: 100%; display: block; border: 4px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); margin-top: 6px; }
+  .pcard .cap { color: #666; font-style: italic; font-size: 12px; margin-top: 4px; }
+  .launch { display: inline-block; margin-top: 8px; padding: 8px 16px; background: #2b5ea7; color: #fff; text-decoration: none; border-radius: 3px; }
+  .launch:hover { background: #1f4a87; }
+  footer { padding: 18px 28px; border-top: 1px solid #e5e5e5; color: #888; font-size: 12px; }
+  a { color: #1a4fa0; }
+  @media (max-width: 600px) { header, main, footer { padding-left: 16px; padding-right: 16px; } th:nth-child(2), td:nth-child(2) { display: none; } }
+</style>
+</head>
+<body>
+<!--
+  relay fn-eu-04 was scheduled for decommission on 2013-10-31.
+  it never acknowledged the shutdown command.
+  ticket #4471 closed: "cannot reproduce". it is still answering.
+-->
+<div class="page">
+  <header><span id="logo"></span><b>FlutterNet</b><span>Service Archive</span></header>
+  <main>
+    <h1>FlutterNet Messenger has been discontinued</h1>
+    <p class="notice">FlutterNet Messenger was retired on <b>31 October 2013</b>. Thank you for nine years of conversations, nudges and away messages. Account data was scheduled for deletion on 1 March 2014 under our privacy policy. This page is a read-only archive.</p>
+
+    <h2>Relay status</h2>
+    <p>Relays are listed for historical reference. All relays should report <i>Offline</i>.</p>
+    <table>
+      <thead><tr><th>Relay</th><th>Region</th><th>Status</th><th>Users signed in</th></tr></thead>
+      <tbody>
+        <tr><td>fn-us-01</td><td>US East</td><td class="off">Offline</td><td>0</td></tr>
+        <tr><td>fn-us-02</td><td>US West</td><td class="off">Offline</td><td>0</td></tr>
+        <tr><td>fn-eu-01</td><td>EU North</td><td class="off">Offline</td><td>0</td></tr>
+        <tr><td>fn-eu-02</td><td>EU Central</td><td class="off">Offline</td><td>0</td></tr>
+        <tr class="live" id="live" tabindex="0" title="signed in: mira.vale92@flutter.net  |  status: Away since 14/06/2006 21:47">
+          <td>fn-eu-04</td><td>Lakeshore</td><td class="on">Online</td><td>1</td>
+        </tr>
+        <tr class="tip" id="tip"><td colspan="4"></td></tr>
+        <tr><td>fn-as-01</td><td>Asia Pacific</td><td class="off">Offline</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#888">Last heartbeat from fn-eu-04: <span id="beat"></span></p>
+
+    <h2>Archived public profiles</h2>
+    <p>A small sample of public profile cards was preserved for the web archive. Personal details have been removed.</p>
+    <div class="cards">
+      <div class="pcard"><div class="top"><span class="dp" data-av="theo"></span><div><b>xX_n0_sc0pe_Xx</b><small>Last online: 2009</small></div></div>"if ur reading this u owe me a slushie"</div>
+      <div class="pcard"><div class="top"><span class="dp" data-av="dani"></span><div><b>~*sunny_d*~</b><small>Last online: 2011</small></div></div>"brb forever lol"</div>
+      <div class="pcard"><div class="top"><span class="dp" data-av="mira"></span><div><b>~*mira*~</b><small>Status: Away</small></div></div>
+        <img id="pierimg" alt="jules + me @ the old pier, glass lake. we carved our names in the railing!!" title="jules + me @ the old pier, glass lake. we carved our names in the railing!!" width="320" height="220">
+        <div class="cap">jules + me @ the ol… <span style="color:#aaa">(caption truncated by archive)</span></div>
+      </div>
+      <div class="pcard"><div class="top"><span class="dp" data-av="mom"></span><div><b>gardenlady_57</b><small>Last online: 2016</small></div></div>"Does anyone know how to change the font?"</div>
+    </div>
+
+    <h2>Web client</h2>
+    <p>The browser-based client has been disabled on all relays.</p>
+    <p><a class="launch" href="login.html">Open web client</a> <span style="color:#888;font-size:12px">(fn-eu-04 still responds)</span></p>
+  </main>
+  <footer>© 2004–2013 FlutterNet. FlutterNet is a fictional service, and this site is a work of fiction. Any resemblance to real people is coincidental.</footer>
+</div>
+<script src="js/art.js"></script>
+<script>
+  document.getElementById("logo").innerHTML = Art.logo(36);
+  document.querySelectorAll("[data-av]").forEach((e) => (e.innerHTML = Art.avatar(e.dataset.av)));
+  document.getElementById("pierimg").src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(Art.pier().replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" '));
+  const live = document.getElementById("live"), tip = document.getElementById("tip");
+  const showTip = () => { tip.firstElementChild.textContent = live.title; tip.classList.toggle("show"); };
+  live.addEventListener("click", showTip);
+  live.addEventListener("keydown", (e) => { if (e.key === "Enter") showTip(); });
+  const beat = () => (document.getElementById("beat").textContent = new Date().toLocaleString("en-GB"));
+  beat(); setInterval(beat, 1000);
+</script>
+</body>
+</html>

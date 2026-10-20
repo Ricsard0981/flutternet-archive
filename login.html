@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flutter Messenger</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/xp.css">
+<style>
+  .stage { position: fixed; inset: 0 0 34px 0; display: grid; place-items: center; padding: 12px; }
+  .login { width: min(340px, 100%); }
+  .login .inner { padding: 18px 22px 20px; background: linear-gradient(180deg, #fff, #dfeafb); }
+  .lg { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-bottom: 14px; }
+  .lg b { font: bold italic 22px "Trebuchet MS", Tahoma; color: #2b5ea7; }
+  .lg small { color: #6a7d99; }
+  label { display: block; margin: 10px 0 3px; }
+  .row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 8px; }
+  .msg { min-height: 1.4em; margin-top: 10px; color: #b00020; font-size: 12px; }
+  .msg.ok { color: #2e7d32; }
+  .recover { margin-top: 14px; padding: 10px; border: 1px solid #b7c9e6; background: #f5f9ff; border-radius: 4px; }
+  .recover[hidden] { display: none; }
+  .closed { text-align: center; color: #555; }
+  .dots::after { content: ""; animation: dots 1.2s steps(4) infinite; }
+  @keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="win login" id="win" role="dialog" aria-labelledby="ttl">
+    <div class="titlebar"><span class="ico" id="ico"></span><span class="t" id="ttl">Flutter Messenger</span><button class="tb-btn" aria-label="Minimize">_</button><button class="tb-btn close" aria-label="Close" onclick="location.href='index.html'">×</button></div>
+    <div class="inner" id="inner">
+      <div class="lg"><span id="biglogo"></span><b>Flutter Messenger</b><small>version 7.5 · relay fn-eu-04</small></div>
+      <form id="f" autocomplete="off">
+        <label for="email">E-mail address:</label>
+        <input class="field" id="email" type="email" spellcheck="false" placeholder="example@flutter.net">
+        <label for="pw">Password:</label>
+        <input class="field" id="pw" type="password">
+        <label for="st">Sign in as:</label>
+        <select class="field" id="st"><option>Online</option><option>Busy</option><option selected>Away</option><option>Appear offline</option></select>
+        <div class="row"><a href="#" id="forgot">Forgot your password?</a><button class="xbtn" type="submit">Sign In</button></div>
+      </form>
+      <form class="recover" id="rec" hidden autocomplete="off">
+        <b>Account recovery</b>
+        <p style="margin:6px 0">Answer your security question to reset your password.</p>
+        <label for="ans" style="margin-top:4px"><i>Where did we carve our names?</i></label>
+        <input class="field" id="ans" spellcheck="false">
+        <div class="row"><span></span><button class="xbtn" type="submit">Submit</button></div>
+      </form>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+<div class="taskbar"><button class="start" aria-label="Start">start</button><div class="task">Flutter Messenger</div><div class="tray"><span id="clock"></span></div></div>
+<script src="js/art.js"></script>
+<script src="js/sealed.js"></script>
+<script src="js/vault.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  $("ico").innerHTML = Art.logo(18); $("biglogo").innerHTML = Art.logo(70);
+  const tick = () => ($("clock").textContent = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }));
+  tick(); setInterval(tick, 5000);
+  if (new URLSearchParams(location.search).has("reset")) Vault.reset();
+
+  const ACCOUNT = "mira.vale92@flutter.net";
+  const msg = (t, ok) => { $("msg").textContent = t; $("msg").className = "msg" + (ok ? " ok" : ""); };
+  const emailOk = () => $("email").value.trim().toLowerCase() === ACCOUNT;
+  let tries = 0;
+
+  if (Vault.has("closed")) {
+    $("inner").innerHTML = `<div class="lg">${Art.logo(70)}<b>Flutter Messenger</b></div><p class="closed">This account has signed out.<br>It has not signed in again.</p><p class="closed"><a href="index.html">Back to the archive</a></p>`;
+  } else if (Vault.has("login")) {
+    $("email").value = ACCOUNT; msg("Welcome back. Your password was reset; press Sign In.", true);
+  }
+
+  $("f").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (Vault.has("login") && emailOk()) return go();
+    if (!$("email").value.trim()) return msg("Please type your e-mail address.");
+    if (!emailOk()) return msg("We couldn't find a FlutterNet account with that e-mail address on this relay.");
+    tries++;
+    msg(tries >= 2 ? "The password is incorrect. If you've forgotten it, use \"Forgot your password?\"." : "The password you typed is incorrect.");
+  });
+  $("forgot").addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!emailOk()) return msg("Type the account's e-mail address first, then choose \"Forgot your password?\".");
+    msg(""); $("rec").hidden = false; $("ans").focus();
+  });
+  $("rec").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg("Checking…", true);
+    const ok = await Vault.open("login", $("ans").value);
+    if (!ok) return msg("That answer doesn't match our records.");
+    go();
+  });
+  function go() {
+    $("inner").innerHTML = `<div class="lg">${Art.logo(70)}<b>Flutter Messenger</b></div><p style="text-align:center">Signing in<span class="dots"></span></p><p style="text-align:center;color:#888;font-size:12px">Last signed in: 14/06/2006 21:47</p>`;
+    setTimeout(() => (location.href = "app.html"), 2200);
+  }
+</script>
+</body>
+</html>

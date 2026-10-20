@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flutter Messenger</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/xp.css">
+<link rel="stylesheet" href="css/messenger.css">
+</head>
+<body>
+<div class="desk">
+  <div class="win msgr" id="msgr">
+    <div class="titlebar"><span class="ico" id="ico"></span><span class="t">Flutter Messenger 7.5</span><button class="tb-btn" aria-label="Minimize">_</button><button class="tb-btn" aria-label="Maximize">□</button><button class="tb-btn close" aria-label="Sign out" id="x">×</button></div>
+    <div class="menubar" role="menubar"><button><u>F</u>ile</button><button><u>E</u>dit</button><button><u>V</u>iew</button><button><u>A</u>ctions</button><button id="m-help"><u>H</u>elp</button></div>
+    <div class="body">
+      <div class="toolbar">
+        <span class="brand"><span id="brandlogo"></span>flutter</span>
+        <button class="tool" data-view="chat"><span class="ti">👥</span><span class="tl">Contacts</span></button>
+        <button class="tool" id="t-nudge"><span class="ti">📳</span><span class="tl">Nudge</span></button>
+        <button class="tool" data-view="space"><span class="ti">📝</span><span class="tl">Space</span></button>
+        <button class="tool" data-view="inbox"><span class="ti">✉️</span><span class="tl">Inbox</span></button>
+        <button class="tool" id="t-help"><span class="ti">❓</span><span class="tl">Help</span></button>
+      </div>
+      <div class="mob-tabs"><button class="xbtn" data-mob="contacts">Contacts</button><button class="xbtn" data-mob="chat">Window</button></div>
+      <div class="cols" id="cols" data-show="contacts">
+        <aside class="left">
+          <div class="box" style="flex:1;min-height:0;display:flex;flex-direction:column">
+            <form class="search" id="search" role="search"><input id="q" placeholder="Search contacts…" aria-label="Search contacts" autocomplete="off"><button aria-label="Search">🔍</button></form>
+            <div class="clist" id="clist"></div>
+          </div>
+          <div class="box me" id="me"></div>
+        </aside>
+        <section class="right">
+          <div class="box head" id="head"></div>
+          <div class="pane-wrap">
+            <div class="tabs" role="tablist" id="tabs">
+              <button class="tab" role="tab" data-view="chat">Conversation</button>
+              <button class="tab" role="tab" data-view="profile">Profile</button>
+              <button class="tab" role="tab" data-view="space">Space</button>
+              <button class="tab" role="tab" data-view="inbox">Inbox</button>
+            </div>
+            <div class="box">
+              <div class="pane" id="pane" tabindex="0"></div>
+              <form class="compose" id="compose" hidden><textarea id="say" aria-label="Type a message" placeholder="Type a message…"></textarea><div class="acts"><button class="xbtn" type="submit">Send</button><button class="xbtn" type="button" id="c-nudge">Nudge</button></div></form>
+            </div>
+          </div>
+          <button class="box np" id="np" aria-label="Now playing, open recently played"></button>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="taskbar">
+  <button class="start" id="start" aria-haspopup="true">start</button>
+  <div class="task" id="task"></div>
+  <div class="tray"><button id="snd" aria-label="Sound off" title="Sound">🔇</button><span id="clock"></span></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"><div class="titlebar"><span class="t">Flutter Messenger</span></div><div class="b"><div class="av-wrap" id="toast-av"></div><div id="toast-t"></div></div></div>
+<div class="blackout" id="blackout" aria-live="polite"></div>
+<script src="js/art.js"></script>
+<script src="js/sealed.js"></script>
+<script src="js/vault.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

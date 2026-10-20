@@ -1,0 +1,108 @@
+/* Luna-style desktop chrome, recreated in CSS (no copied assets). */
+:root {
+  --font: Tahoma, "Segoe UI", Verdana, sans-serif;
+  --title-1: #0a246a; --title-2: #0058ee; --title-3: #3d95ff;
+  --face: #ece9d8;
+  --panel: #f5f8fe;
+  --panel-2: #dfe9f9;
+  --edge: #7f9db9;
+  --ink: #1b1b1b;
+  --muted: #555;
+  --link: #0645ad;
+  --pink: #fcdcea; --pink-edge: #e9a2c2;
+  --blue: #d7e8fb; --blue-edge: #8fb5e3;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; font: 13px/1.4 var(--font); color: var(--ink);
+  /* an original rolling-hill desktop */
+  background:
+    radial-gradient(140% 60% at 30% 108%, #4f9a2f 0 38%, transparent 38.3%),
+    radial-gradient(120% 55% at 85% 112%, #3f8a25 0 40%, transparent 40.3%),
+    linear-gradient(180deg, #2c6fd6 0%, #6aa8ee 45%, #bcdcfb 70%, #9cd36a 70.2%, #5fae36 100%);
+  background-attachment: fixed;
+  overflow: hidden;
+}
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px dotted #000; outline-offset: 2px; }
+
+/* ---------- Window ---------- */
+.win {
+  display: flex; flex-direction: column;
+  background: var(--face);
+  border: 1px solid #0831d9; border-top: 0;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.25) inset, 4px 6px 18px rgba(0,0,0,.4);
+  overflow: hidden;
+}
+.titlebar {
+  display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 4px 0 8px; flex: none;
+  background: linear-gradient(180deg, #3a8cff 0%, var(--title-2) 12%, #0752e0 50%, #0a49d0 90%, #0a3fc0 100%);
+  color: #fff; font: bold 13px var(--font); text-shadow: 1px 1px #0b2a8a;
+  border-radius: 7px 7px 0 0; user-select: none;
+}
+.titlebar .ico { width: 18px; height: 18px; display: grid; place-items: center; }
+.titlebar .t { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tb-btn {
+  width: 22px; height: 22px; border-radius: 3px; border: 1px solid #fff; padding: 0; cursor: pointer;
+  background: linear-gradient(180deg, #3c8cff, #1957e0); color: #fff; font: bold 12px/1 var(--font);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); display: grid; place-items: center;
+}
+.tb-btn.close { background: linear-gradient(180deg, #e98a6a, #d6451d 55%, #c0381a); }
+.tb-btn:hover { filter: brightness(1.15); }
+.menubar { display: flex; gap: 2px; padding: 2px 4px; background: var(--face); border-bottom: 1px solid #d0cdbd; flex: none; }
+.menubar button { background: none; border: 0; padding: 2px 7px; cursor: pointer; }
+.menubar button:hover { background: #316ac5; color: #fff; }
+.menubar u { text-decoration: underline; }
+
+/* ---------- XP controls ---------- */
+.xbtn {
+  min-width: 75px; padding: 4px 12px; cursor: pointer; border-radius: 3px;
+  border: 1px solid #003c74; background: linear-gradient(180deg, #fff, #ecebe6 85%, #d6d0c5);
+  box-shadow: inset -1px -1px 0 rgba(0,0,0,.08);
+}
+.xbtn:hover { box-shadow: inset 0 0 0 2px #f8b636; }
+.xbtn:active { background: linear-gradient(180deg, #e2e0d8, #f3f2ec); }
+.field { width: 100%; padding: 4px 6px; border: 1px solid var(--edge); background: #fff; }
+.field:focus { outline: 1px solid #316ac5; }
+a { color: var(--link); }
+
+/* ---------- Taskbar ---------- */
+.taskbar {
+  position: fixed; left: 0; right: 0; bottom: 0; height: 34px; z-index: 50; display: flex; align-items: center;
+  background: linear-gradient(180deg, #3168d5 0%, #4993e6 6%, #2157d7 12%, #2663e0 80%, #1941a5 100%);
+  border-top: 1px solid #0c3a9e;
+}
+.start {
+  height: 100%; display: flex; align-items: center; gap: 6px; padding: 0 18px 0 10px; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #3c9a3c 0%, #5cbf4a 10%, #379d33 60%, #2b8a2b 100%);
+  border-radius: 0 12px 12px 0; color: #fff; font: italic bold 18px/1 "Trebuchet MS", var(--font);
+  text-shadow: 1px 1px 2px rgba(0,0,0,.5); box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+}
+.task {
+  margin-left: 8px; height: 26px; max-width: 220px; display: flex; align-items: center; gap: 6px; padding: 0 10px;
+  color: #fff; border-radius: 3px; background: linear-gradient(180deg, #1e4fb8, #3f7fe8); border: 1px solid #10308a;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: inset 1px 1px 2px rgba(0,0,0,.4);
+}
+.tray {
+  margin-left: auto; height: 100%; display: flex; align-items: center; gap: 10px; padding: 0 14px;
+  color: #fff; background: linear-gradient(180deg, #0c8fe6, #13a0f3 10%, #0d84d8); border-left: 1px solid #0b5fb0;
+}
+.tray button { background: none; border: 0; color: #fff; cursor: pointer; padding: 0; font-size: 14px; }
+
+/* ---------- Balloon / toast ---------- */
+.toast {
+  position: fixed; right: 12px; bottom: 44px; z-index: 60; width: 240px;
+  background: linear-gradient(180deg, #fff, #e6efff); border: 1px solid #5a7edc; border-radius: 6px 6px 0 0;
+  box-shadow: 2px 4px 12px rgba(0,0,0,.35); transform: translateY(140%); transition: transform .5s ease-out;
+}
+.toast.show { transform: none; }
+.toast .titlebar { height: 22px; font-size: 11px; }
+.toast .b { display: flex; gap: 10px; padding: 10px; align-items: center; }
+.toast .b .av-wrap { width: 44px; height: 44px; flex: none; border: 1px solid #999; }
+
+/* ---------- Effects ---------- */
+@keyframes nudge { 0%,100% { transform: translate(0,0); } 10% { transform: translate(-8px,3px); } 20% { transform: translate(7px,-4px); } 30% { transform: translate(-6px,-2px); } 40% { transform: translate(8px,4px); } 50% { transform: translate(-5px,3px); } 60% { transform: translate(5px,-3px); } 70% { transform: translate(-3px,2px); } 80% { transform: translate(3px,-1px); } }
+.shake { animation: nudge .6s linear; }
+@media (prefers-reduced-motion: reduce) { .shake { animation: none; } .toast { transition: none; } }
